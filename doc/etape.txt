@@ -1,0 +1,26 @@
+Choix de Méthodologie
+
+TDD - test-driven development
+    Permet a tout moment d'éviter les regressions et de corriger immediatement les potentiels bug
+    Demande de la rigueur, un test pour un element a dev.
+    Test a faire avant.
+    Est possible car le cahier des charges n'est pas sujets a modification.
+
+Projet non imposant une structure simple avec un meme service pour effectuer la recupDesDonnées et la simulation
+Ainsi que les model :
+    de la carte avec un tableau en 2D contenant pour chaque le model case
+    d'une case, précisant si le type de case ( vide Montagne ou Trésor, + un boolean indiquant la présence d'un aventurier)
+    de l'aventurier avec sa position, ses mouvements restants, son orientation
+
+Sommaire element a construire :
+    - l'environnement de dev (Build de l'application)
+    - Construction du model Case
+    - Construction du model carte -> contenant le tableaux de case plaçant les elements dans le tableau
+    - Recupération du fichier d'entrée -> fichier ServiceImpl
+    - Lecture du Fichiers d'entrée et Construction de l'objet carte
+    - Construction du model aventurier
+    - Ajout des regles de gestion -> Fichier ServiceImpl
+
+Model Case : 
+    ->TestUnitaire construction
+    ->dev Construction
