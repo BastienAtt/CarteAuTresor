@@ -21,6 +21,6 @@ Sommaire element a construire :
     - Construction du model aventurier
     - Ajout des regles de gestion -> Fichier ServiceImpl
 
-Model Case : 
+Model Case :
     ->TestUnitaire construction
     ->dev Construction
