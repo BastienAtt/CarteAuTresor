@@ -40,11 +40,13 @@ public class StrategieServiceImplTest {
         String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteMontagneEtTresor.txt";
         strategieService.recupDonneesFichiers(cheminFichier);
         Carte carte = strategieService.getCarte();
+        //le "M" seul ne valide pas l'égalité, ( Expected [M] but was [M] ) la reduction en chart de 1 charactere corrige le probleme.
+        //Il s'agit du charactere 8203 en plus le zero-width space. Retrait de celui ci dans le code Impl
         assertEquals("M", carte.getMap()[1][0].getTitre());
         assertEquals("M", carte.getMap()[2][1].getTitre());
         assertEquals(0, carte.getMap()[1][0].getNombresTresor());
         assertEquals(0, carte.getMap()[2][1].getNombresTresor());
-        assertEquals("T", carte.getMap()[0][3].getTitre());
+        assertEquals("T", carte.getMap()[0][3].getTitre());  
         assertEquals("T", carte.getMap()[1][3].getTitre());
         assertEquals(2, carte.getMap()[0][3].getNombresTresor());
         assertEquals(3, carte.getMap()[1][3].getNombresTresor());
