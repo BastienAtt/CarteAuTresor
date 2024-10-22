@@ -83,4 +83,8 @@ public class Aventurier {
         }
     }
 
+    public int[] deplacementTheorique(){
+        return null;
+    }
+
 }
