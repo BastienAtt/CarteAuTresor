@@ -59,4 +59,28 @@ public class Aventurier {
         this.deplacement = deplacement;
     }
 
+    public void deplacementGauche() {
+        if(this.orientation == 'N'){
+            this.orientation = 'O';
+        } else if(this.orientation == 'O'){
+            this.orientation = 'S';
+        } else if(this.orientation == 'S'){
+            this.orientation = 'E';
+        }else if(this.orientation == 'E'){
+            this.orientation = 'N';
+        }
+    }
+
+    public void deplacementDroite() {
+        if(this.orientation == 'N'){
+            this.orientation = 'E';
+        } else if(this.orientation == 'E'){
+            this.orientation = 'S';
+        } else if(this.orientation == 'S'){
+            this.orientation = 'O';
+        }else if(this.orientation == 'O'){
+            this.orientation = 'N';
+        }
+    }
+
 }

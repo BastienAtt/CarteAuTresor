@@ -17,4 +17,39 @@ public class AventurierTest {
         
     }
 
+    /*
+     *      N
+     *      |
+     *  O---+---E
+     *      |
+     *      S 
+     *  
+     */
+
+    @Test
+    public void aventurierOrientationGaucheTest(){
+        Aventurier aventurier = new Aventurier("Test",0,1,'S',"GDAGGA");
+        aventurier.deplacementGauche();
+        assertEquals('E', aventurier.getOrientation());
+        aventurier.deplacementGauche();
+        assertEquals('N', aventurier.getOrientation());
+        aventurier.deplacementGauche();
+        assertEquals('O', aventurier.getOrientation());
+        aventurier.deplacementGauche();
+        assertEquals('S', aventurier.getOrientation());
+    }
+
+    @Test
+    public void aventurierOrientationDroiteTest(){
+        Aventurier aventurier = new Aventurier("Test",0,1,'S',"GDAGGA");
+        aventurier.deplacementDroite();
+        assertEquals('O', aventurier.getOrientation());
+        aventurier.deplacementDroite();
+        assertEquals('N', aventurier.getOrientation());
+        aventurier.deplacementDroite();
+        assertEquals('E', aventurier.getOrientation());
+        aventurier.deplacementDroite();
+        assertEquals('S', aventurier.getOrientation());
+    }
+
 }
