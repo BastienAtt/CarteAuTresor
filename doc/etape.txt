@@ -24,3 +24,25 @@ Sommaire element a construire :
 Model Case :
     ->TestUnitaire construction
     ->dev Construction
+
+Model Carte : 
+    ->TestUnitaire construction
+    ->dev Construction
+
+Service : 
+    recupPremiereLigne()
+        test puis implementation
+    Si on ne trouve pas la premiere ligne "C" : erreur, on a pas la taille de la carte 
+
+    Cas a prendre en compte a la création de la carte : 
+    Pas de montagne : pas de soucis particulier 
+    Pas de trésor : seul le placement des aventurier va changer, pas d'erreur a remonter 
+    Pas d'aventurier : Dans ce cas, si on ne fait pas d'erreur alors on renvoi simplement la carte d'entrée, pas d'interet
+                        On peut lever une exception pour le préciser comme une erreur dans le fichier d'entrée. 
+
+    Cas a lors des deplacements d'aventurier : 
+    "Il ne peut y avoir qu’un aventurier à la fois sur une même case. Les mouvements des aventuriers sont 
+    évalués tour par tour. En cas de conflit entre mouvements sur un même tour, c’est l’ordre d’apparition 
+    de l’aventurier dans le fichier qui donne la priorité des mouvements"
+        Controle de la liberté de la case d'arrivé, ni montagne ni aventurier. 
+        l'ordre d'apparition c'est l'ordre présent dans le fichier d'entrée : List 

@@ -20,10 +20,13 @@ public class StrategieServiceImpl implements StrategieService {
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
             // Premiere ligne :
             String line = controleReadFirstLine(reader);
-            String[] splitLine= line.split("-");
+            String[] splitLine= line.split(" - ");
             int sizeOE = Integer.valueOf(splitLine[1]);
             int sizeNS = Integer.valueOf(splitLine[2]);
             carte = new Carte(sizeOE, sizeNS);
+
+            //ligne apres la premiere 
+            
         } catch (FileNotFoundException e) {
             throw new Exception("Fichier Non trouvé, chemin du fichier reçu : " + cheminFichier);
         } catch (IOException e) {
