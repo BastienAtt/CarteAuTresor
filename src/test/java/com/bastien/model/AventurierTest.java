@@ -11,7 +11,7 @@ public class AventurierTest {
     public void aventurierCreationTest(){
         Aventurier aventurier = new Aventurier("Test",0,1,'S',"GDAGGA");
         assertEquals("Test", aventurier.getName());
-        assertEquals(0,aventurier.getPositionEO());
+        assertEquals(0,aventurier.getPositionOE());
         assertEquals(1,aventurier.getPositionNS());
         assertEquals('S',aventurier.getOrientation());
         assertEquals("GDAGGA",aventurier.getDeplacement());

@@ -3,7 +3,7 @@ package com.bastien.model;
 public class Aventurier {
     private String name;
 
-    private int positionEO;
+    private int positionOE;
 
     private int positionNS; 
 
@@ -11,9 +11,9 @@ public class Aventurier {
 
     private String deplacement;
 
-    public Aventurier(String name, int positionEO, int positionNS, char orientation, String deplacement) {
+    public Aventurier(String name, int positionOE, int positionNS, char orientation, String deplacement) {
         this.name = name;
-        this.positionEO = positionEO;
+        this.positionOE = positionOE;
         this.positionNS = positionNS;
         this.orientation = orientation;
         this.deplacement = deplacement;
@@ -27,12 +27,12 @@ public class Aventurier {
         this.name = name;
     }
 
-    public int getPositionEO() {
-        return positionEO;
+    public int getPositionOE() {
+        return positionOE;
     }
 
-    public void setPositionEO(int positionEO) {
-        this.positionEO = positionEO;
+    public void setPositionOE(int positionOE) {
+        this.positionOE = positionOE;
     }
 
     public int getPositionNS() {
@@ -91,16 +91,16 @@ public class Aventurier {
     public int[] deplacementTheorique() throws Exception{
         switch (this.orientation) {
             case 'N':
-                int[] retourN = {this.positionEO,this.positionNS-1}; 
+                int[] retourN = {this.positionOE,this.positionNS-1}; 
                 return retourN;
             case 'S':
-                int[] retourS = {this.positionEO,this.positionNS+1}; 
+                int[] retourS = {this.positionOE,this.positionNS+1}; 
                 return retourS;
             case 'E':
-               int[] retourE = {this.positionEO+1,this.positionNS}; 
+               int[] retourE = {this.positionOE+1,this.positionNS}; 
                 return retourE;
             case 'O':
-                int[] retourO = {this.positionEO-1,this.positionNS}; 
+                int[] retourO = {this.positionOE-1,this.positionNS}; 
                 return retourO;
             default:
                 throw new Exception("Orientation inconnue");
