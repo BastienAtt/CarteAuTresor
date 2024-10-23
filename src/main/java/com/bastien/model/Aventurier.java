@@ -83,8 +83,28 @@ public class Aventurier {
         }
     }
 
-    public int[] deplacementTheorique(){
-        return null;
+    /**
+     * 
+     * @return la position EO puis la position NS théorique apres le fait d'avancer avant de vérifier que le déplacement est valide
+     * @throws Exception 
+     */
+    public int[] deplacementTheorique() throws Exception{
+        switch (this.orientation) {
+            case 'N':
+                int[] retourN = {this.positionEO,this.positionNS-1}; 
+                return retourN;
+            case 'S':
+                int[] retourS = {this.positionEO,this.positionNS+1}; 
+                return retourS;
+            case 'E':
+               int[] retourE = {this.positionEO+1,this.positionNS}; 
+                return retourE;
+            case 'O':
+                int[] retourO = {this.positionEO-1,this.positionNS}; 
+                return retourO;
+            default:
+                throw new Exception("Orientation inconnue");
+        }
     }
 
 }
