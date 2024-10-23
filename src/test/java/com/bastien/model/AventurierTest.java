@@ -57,13 +57,26 @@ public class AventurierTest {
      * Test de la fonction qui renvoi l'emplacement théorique apres mouvement de 1 vers le sud depuis la positionNS 1
      * +
      * Test de la fonction qui deplacement réellement le personnage dans le meme cas
+     * @throws Exception 
      */
     @Test
-    public void aventurierEmplacementArriver(){
+    public void aventurierEmplacementArriver() throws Exception{
         Aventurier aventurier = new Aventurier("Test",0,1,'S',"GDAGGA");
         int[] result = aventurier.deplacementTheorique();
         int[] expected = { 0,2 };
         assertArrayEquals(expected, result);
+        aventurier = new Aventurier("Test",0,1,'O',"GDAGGA");
+        result = aventurier.deplacementTheorique();
+        int[] expected2 = { -1,1 };
+        assertArrayEquals(expected2, result);
+        aventurier = new Aventurier("Test",0,1,'E',"GDAGGA");
+        result = aventurier.deplacementTheorique();
+        int[] expected3 = { 1,1 };
+        assertArrayEquals(expected3, result);
+        aventurier = new Aventurier("Test",0,1,'N',"GDAGGA");
+        result = aventurier.deplacementTheorique();
+        int[] expected4 = { 0,0 };
+        assertArrayEquals(expected4, result);
     }
 
 }
