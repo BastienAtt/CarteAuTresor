@@ -61,31 +61,33 @@ public class StrategieServiceImpl implements StrategieService {
                 if(line == null) {
                     outWhile = false;
                 }else if(!(line.startsWith("#") || line.startsWith("C"))){
-                    //Cas trésor 
-                    if(line.startsWith("T")){
-                        splitLine= line.split(" - ");
-                        //.replace("\u200B", "") supprime le zero width space problématique voir le test unitaire
-                        Case nouvelleCase = new Case(false,splitLine[0].replace("\u200B", ""),Integer.valueOf(splitLine[3].trim()));
-                        carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
-                    } else /* Cas Montagne */ if(line.startsWith("M")){
-                        splitLine= line.split(" - ");
-                        Case nouvelleCase = new Case(false,splitLine[0].replace("\u200B", ""),0);
-                        carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
-                    } else /* Cas Aventurier */ if(line.startsWith("A")){
-                        splitLine= line.split(" - ");
-                        Aventurier newAventurier = new Aventurier(splitLine[1], Integer.valueOf(splitLine[2]), Integer.valueOf(splitLine[3]), splitLine[4].charAt(0), splitLine[5].trim().replace("\u200B", ""));
-                        listDesAventurier.add(newAventurier);
-                    }
+                    setLine(line);
                 }
             }
             
-
-
-
         } catch (FileNotFoundException e) {
             throw new Exception("Fichier Non trouvé, chemin du fichier reçu : " + cheminFichier);
         } catch (IOException e) {
             throw new Exception(e.getMessage(), e);
+        }
+    }
+
+    private void setLine(String line) {
+        String[] splitLine;
+        //Cas trésor 
+        if(line.startsWith("T")){
+            splitLine= line.split(" - ");
+            //.replace("\u200B", "") supprime le zero width space problématique voir le test unitaire
+            Case nouvelleCase = new Case(false,splitLine[0].replace("\u200B", ""),Integer.valueOf(splitLine[3].trim()));
+            carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
+        } else /* Cas Montagne */ if(line.startsWith("M")){
+            splitLine= line.split(" - ");
+            Case nouvelleCase = new Case(false,splitLine[0].replace("\u200B", ""),0);
+            carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
+        } else /* Cas Aventurier */ if(line.startsWith("A")){
+            splitLine= line.split(" - ");
+            Aventurier newAventurier = new Aventurier(splitLine[1], Integer.valueOf(splitLine[2]), Integer.valueOf(splitLine[3]), splitLine[4].charAt(0), splitLine[5].trim().replace("\u200B", ""));
+            listDesAventurier.add(newAventurier);
         }
     }
 
