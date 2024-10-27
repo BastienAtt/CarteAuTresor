@@ -1,9 +1,12 @@
 package com.bastien.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+
+import java.util.List;
 
 import org.junit.Test;
 
+import com.bastien.model.Aventurier;
 import com.bastien.model.Carte;
 import com.bastien.service.impl.StrategieServiceImpl;
 
@@ -51,6 +54,19 @@ public class StrategieServiceImplTest {
         assertEquals(2, carte.getMap()[0][3].getNombresTresor());
         assertEquals(3, carte.getMap()[1][3].getNombresTresor());
 
+    }
+
+    //A​ - Lara - 1 - 1 - S - AADADAGGA 
+    @Test
+    public void fichierEntreeCompletAventurierTest() throws Exception {
+        StrategieService strategieService = new StrategieServiceImpl();
+        String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteMontagneEtTresor.txt";
+        strategieService.recupDonneesFichiers(cheminFichier);
+        List<Aventurier> listResult = strategieService.getListDesAventurier();
+        assertEquals( 1, listResult.size());
+        assertEquals( "AADADAGGA", listResult.get(0).getDeplacement());
+        assertEquals( "Lara", listResult.get(0).getName());
+        assertEquals( 'S', listResult.get(0).getOrientation());
     }
 
 }

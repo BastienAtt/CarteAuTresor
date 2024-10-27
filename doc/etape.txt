@@ -44,10 +44,15 @@ Service :
     "Il ne peut y avoir qu’un aventurier à la fois sur une même case. Les mouvements des aventuriers sont 
     évalués tour par tour. En cas de conflit entre mouvements sur un même tour, c’est l’ordre d’apparition 
     de l’aventurier dans le fichier qui donne la priorité des mouvements"
-        Controle de la liberté de la case d'arrivé, ni montagne ni aventurier. 
+        Controle de la liberté de la case d'arrivé, ni montagne ni aventurier. ni hors map
         l'ordre d'apparition c'est l'ordre présent dans le fichier d'entrée : List 
+        On fait un aventurier, on controle l'emplacement d'arrivé, et on effectue le mouvement si tout est ok
 
 
     un fichier d'entree : avec M - 1 - 3 puis C - 4 - 6 est il valable ? -> doit on ignorer la montagne ? 
         Decision : on va lire la premiere ligne C arrivant, puis considerer l'ensemble des autres lignes, déclaré avant ou apres la Ligne c
             De meme, si plusieurs ligne C sont déclaré, seule la premiere est prise en compte. 
+
+Ajout d'aventurier depuis le fichiers d'entree
+
+    
