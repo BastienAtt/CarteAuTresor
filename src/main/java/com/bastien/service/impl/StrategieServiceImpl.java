@@ -1,9 +1,13 @@
 package com.bastien.service.impl;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bastien.model.Aventurier;
 import com.bastien.model.Carte;
 import com.bastien.model.Case;
 import com.bastien.service.StrategieService;
@@ -12,6 +16,18 @@ public class StrategieServiceImpl implements StrategieService {
 
     private Carte carte;
 
+    private List<Aventurier> listDesAventurier = new ArrayList<>();
+
+    
+    public List<Aventurier> getListDesAventurier() {
+        return listDesAventurier;
+    }
+
+    public void setListDesAventurier(List<Aventurier> listDesAventurier) {
+        this.listDesAventurier = listDesAventurier;
+    }
+
+    @Override
     public Carte getCarte() {
         return carte;
     }
@@ -20,6 +36,7 @@ public class StrategieServiceImpl implements StrategieService {
         this.carte = carte;
     }
 
+    @Override
     public void recupDonneesFichiers(String cheminFichier) throws Exception {
         try (BufferedReader reader = new BufferedReader(new FileReader(cheminFichier))) {
             // Premiere ligne :
@@ -55,7 +72,9 @@ public class StrategieServiceImpl implements StrategieService {
                         Case nouvelleCase = new Case(false,splitLine[0].replace("\u200B", ""),0);
                         carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
                     } else /* Cas Aventurier */ if(line.startsWith("A")){
-                        
+                        splitLine= line.split(" - ");
+                        Aventurier newAventurier = new Aventurier(splitLine[1], Integer.valueOf(splitLine[2]), Integer.valueOf(splitLine[3]), splitLine[4].charAt(0), splitLine[5].trim().replace("\u200B", ""));
+                        listDesAventurier.add(newAventurier);
                     }
                 }
             }
