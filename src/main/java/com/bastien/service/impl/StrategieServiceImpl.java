@@ -137,12 +137,13 @@ public class StrategieServiceImpl implements StrategieService {
                 try {
                     if (aventurier.getDeplacement().length() != 0 && !aventurier.isFinished()) {
                         gestionAventurier(aventurier);
-                    } else {
+                    } else if(!aventurier.isFinished()){
                         deplacementFini++;
                         aventurier.setIsFinished(true);
                     }
                 } catch (Exception e) {
                     System.out.println("Erreur lors du déplacement de l'aventurier " + aventurier.getName() + " : " + e.getMessage());
+                    aventurier.setDeplacement(removefirstChar(aventurier.getDeplacement()));
                 }
             }
         }
@@ -157,7 +158,6 @@ public class StrategieServiceImpl implements StrategieService {
             case 'A' -> deplacementAventurier(aventurier);
             case 'G' -> aventurier.deplacementGauche();
             case 'D' -> aventurier.deplacementDroite();
-            default -> throw new Exception("Deplacement invalide");
         }
         //on retire la valeur traité
         aventurier.setDeplacement(removefirstChar(aventurier.getDeplacement()));
