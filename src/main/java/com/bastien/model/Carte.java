@@ -9,6 +9,11 @@ public class Carte {
      */
     public Carte(int sizeI,int sizeJ) {
         map = new Case[sizeI][sizeJ];
+        for (int i = 0; i < sizeI; i++){
+            for (int j = 0; j < sizeJ; j++){
+                map[i][j] = new Case();
+            }
+        }
     }
 
     /**
