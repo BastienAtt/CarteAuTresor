@@ -1,8 +1,10 @@
 package com.bastien.service.impl;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +19,6 @@ public class StrategieServiceImpl implements StrategieService {
     private Carte carte;
 
     private List<Aventurier> listDesAventurier = new ArrayList<>();
-
-    private List<Aventurier> listDesAventurierFini;
-
-    public List<Aventurier> getListDesAventurierFini() {
-        return listDesAventurierFini;
-    }
-
-    public void setListDesAventurierFini(List<Aventurier> listDesAventurierFini) {
-        this.listDesAventurierFini = listDesAventurierFini;
-    }
 
     public List<Aventurier> getListDesAventurier() {
         return listDesAventurier;
@@ -234,6 +226,46 @@ public class StrategieServiceImpl implements StrategieService {
         }
         return !caseEnCours.isAventurierPresent();
 
+    }
+
+    @Override
+    public void ecriture(String cheminFichier) throws Exception {
+        //ecriture des donnees dans le fichier de sortie
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(cheminFichier))) {
+            //ecriture de la carte 
+            writer.write("C - " + carte.getMap().length + " - " +carte.getMap()[0].length+"\n");
+            //Montagne
+            for (int i = 0; i < carte.getMap().length; i++) {
+                for (int j = 0; j < carte.getMap()[i].length; j++) {
+                    if(carte.getMap()[i][j].getTitre().equals("M")){
+                        writer.write("M - " + i + " - " + j +"\n");
+                    }
+                }
+                
+            }
+            //Tresor
+            writer.write("# {T comme Trésor} - {Axe horizontal} - {Axe vertical} - {Nb. de trésors restants}\n" );
+
+            for (int i = 0; i < carte.getMap().length; i++) {
+                for (int j = 0; j < carte.getMap()[i].length; j++) {
+                    if(carte.getMap()[i][j].getTitre().equals("T")){
+                        writer.write("T - " + i + " - " + j + " - "+ carte.getMap()[i][j].getNombresTresor() +"\n");
+                    }
+                }
+                
+            }
+            writer.write("# {A comme Aventurier} - {Nom de l’aventurier} - {Axe horizontal} - {Axe vertical} - {Orientation} - {Nb. trésors ramassés}\n" );
+
+            //ecriture des aventuriers
+            for (Aventurier aventurier : listDesAventurier) {
+                writer.write("A - " + aventurier.getName() + " - " + aventurier.getPositionOE() + " - " + aventurier.getPositionNS() + " - " + aventurier.getOrientation() + " - " + aventurier.getNombresTresor() +"\n");
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new Exception("Fichier Non trouvé, chemin du fichier reçu : " + cheminFichier);
+        } catch (IOException e) {
+            throw new Exception(e.getMessage(), e);
+        }
     }
 
 

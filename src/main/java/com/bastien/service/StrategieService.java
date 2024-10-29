@@ -13,7 +13,7 @@ public interface StrategieService {
 
     public List<Aventurier> getListDesAventurier();
 
-    public List<Aventurier> getListDesAventurierFini();
-
     public void simulation();
+
+    public void ecriture(String cheminFichier) throws Exception;
 }
