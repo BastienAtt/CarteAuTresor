@@ -93,4 +93,26 @@ public class StrategieServiceImplTest {
         assertEquals('S', lara.getOrientation());
     }
 
+    /**
+     * -> Lara ne bouge pas depuis 2-3 'S' HIU en deplacement
+     * Dorian va : -> A 1-1 -> A 1-1(Montagne en 1-0) -> D 'E'-> A 1-1(Montagne en 2-1) -> D 'S' -> D 'O' -> A 0-1 -> A 0-1(bord de map) -> G 'S' -> A 0-2 -> A 0-3 -> G 'E' -> A 1-3 -> A 1-3(Lara en 2-3)
+     * -> Dorian 1-3 'E'
+     * @throws Exception
+     */
+    @Test
+    public void simulationTestEmplacementFinalMultiAventurierEtMontage() throws Exception {
+        StrategieService strategieService = new StrategieServiceImpl();
+        String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteMontagneEtTresorMultiple.txt";
+        strategieService.recupDonneesFichiers(cheminFichier);
+        strategieService.simulation();
+        Aventurier lara = strategieService.getListDesAventurier().get(0);
+        assertEquals(2, lara.getPositionOE());
+        assertEquals(3, lara.getPositionNS());
+        assertEquals('S', lara.getOrientation());
+        Aventurier dorian = strategieService.getListDesAventurier().get(1);
+        assertEquals(1, dorian.getPositionOE());
+        assertEquals(3, dorian.getPositionNS());
+        assertEquals('E', dorian.getOrientation());
+    }
+
 }
