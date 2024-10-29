@@ -13,5 +13,7 @@ public interface StrategieService {
 
     public List<Aventurier> getListDesAventurier();
 
+    public List<Aventurier> getListDesAventurierFini();
+
     public void simulation();
 }
