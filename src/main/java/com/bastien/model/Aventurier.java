@@ -11,12 +11,23 @@ public class Aventurier {
 
     private String deplacement;
 
+    private boolean isFinished;
+
     public Aventurier(String name, int positionOE, int positionNS, char orientation, String deplacement) {
         this.name = name;
         this.positionOE = positionOE;
         this.positionNS = positionNS;
         this.orientation = orientation;
         this.deplacement = deplacement;
+        this.isFinished = false;
+    }
+
+    public boolean isFinished() {
+        return this.isFinished;
+    }
+
+    public void setIsFinished(boolean isFinished) {
+        this.isFinished = isFinished;
     }
 
     public String getName() {
@@ -106,5 +117,7 @@ public class Aventurier {
                 throw new Exception("Orientation inconnue");
         }
     }
+
+
 
 }
