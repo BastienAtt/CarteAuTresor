@@ -24,6 +24,9 @@ public class Case {
 
     //constructor vide
     public Case() {
+        this.aventurierPresent = false;
+        this.titre = "";
+        this.nombresTresor = 0;
     }
 
     public String getTitre() {
