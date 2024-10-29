@@ -69,4 +69,28 @@ public class StrategieServiceImplTest {
         assertEquals( 'S', listResult.get(0).getOrientation());
     }
 
+    /**
+     * C - 3 - 4
+     * M​ - 1 - 0 
+     * M​ - 2 - 1 
+     * T​ - 0 - 3 - 2 
+     * T​ - 1 - 3 - 3 
+     * A​ - Lara - 1 - 1 - S - AADADAGGA 
+     * @throws Exception
+     *  -> Aucune montagnes sur le trajet. 
+     * Lara fait A 1-2, A 1-3, D 'O', A 0-3, D 'N', A 0-2, G 'O', G 'S', A 0-3
+     * Position finale 0-3 orientation S
+     */
+    @Test
+    public void simulationTestEmplacementFinal() throws Exception {
+        StrategieService strategieService = new StrategieServiceImpl();
+        String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteMontagneEtTresor.txt";
+        strategieService.recupDonneesFichiers(cheminFichier);
+        strategieService.simulation();
+        Aventurier lara = strategieService.getListDesAventurier().get(0);
+        assertEquals(0, lara.getPositionOE());
+        assertEquals(3, lara.getPositionNS());
+        assertEquals('S', lara.getOrientation());
+    }
+
 }

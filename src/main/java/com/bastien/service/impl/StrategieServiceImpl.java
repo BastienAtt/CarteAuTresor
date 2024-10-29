@@ -109,6 +109,14 @@ public class StrategieServiceImpl implements StrategieService {
         return "";
     }
 
+    @Override
+    public void simulation() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
+
 
 
 }
