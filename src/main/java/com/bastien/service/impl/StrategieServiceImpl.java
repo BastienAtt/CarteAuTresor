@@ -178,6 +178,18 @@ public class StrategieServiceImpl implements StrategieService {
             aventurier.setPositionOE(position[0]);
             aventurier.setPositionNS(position[1]);
             carte.getMap()[position[0]][position[1]].setAventurierPresent(true);
+            // Si le tresor est present
+            if (carte.getTypeAt(position[0], position[1]).getTitre().equals("T")) {
+                //on ajoute le tresor a l'aventurier
+                aventurier.setNombresTresor(aventurier.getNombresTresor() + 1);
+                //On le retire a la map
+                carte.getTypeAt(position[0], position[1]).setNombresTresor(carte.getTypeAt(position[0], position[1]).getNombresTresor()-1);
+                //Si il n'y a plus de tresor : 
+                if(carte.getTypeAt(position[0], position[1]).getNombresTresor()==0){
+                    //On retire le titre. 
+                    carte.getTypeAt(position[0], position[1]).setTitre("");
+                }
+            }
         } else {
             // Si le déplacement n'est pas valide
             System.out.println("L'aventurier " + aventurier.getName() + " n'a pas un deplacement valide");
