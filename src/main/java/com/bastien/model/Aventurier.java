@@ -76,9 +76,9 @@ public class Aventurier {
     public void deplacementGauche() {
         switch (this.orientation) {
             case 'N'-> this.orientation = 'O';
-            case 'E'-> this.orientation = 'S';
+            case 'O'-> this.orientation = 'S';
             case 'S'-> this.orientation = 'E';
-            case 'O'-> this.orientation = 'N';
+            case 'E'-> this.orientation = 'N';
         }
     }
 
