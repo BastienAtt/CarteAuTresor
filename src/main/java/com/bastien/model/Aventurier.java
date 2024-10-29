@@ -74,26 +74,20 @@ public class Aventurier {
     }
 
     public void deplacementGauche() {
-        if(this.orientation == 'N'){
-            this.orientation = 'O';
-        } else if(this.orientation == 'O'){
-            this.orientation = 'S';
-        } else if(this.orientation == 'S'){
-            this.orientation = 'E';
-        }else if(this.orientation == 'E'){
-            this.orientation = 'N';
+        switch (this.orientation) {
+            case 'N'-> this.orientation = 'O';
+            case 'E'-> this.orientation = 'S';
+            case 'S'-> this.orientation = 'E';
+            case 'O'-> this.orientation = 'N';
         }
     }
 
     public void deplacementDroite() {
-        if(this.orientation == 'N'){
-            this.orientation = 'E';
-        } else if(this.orientation == 'E'){
-            this.orientation = 'S';
-        } else if(this.orientation == 'S'){
-            this.orientation = 'O';
-        }else if(this.orientation == 'O'){
-            this.orientation = 'N';
+        switch (this.orientation) {
+            case 'N'-> this.orientation = 'E';
+            case 'E'-> this.orientation = 'S';
+            case 'S'-> this.orientation = 'O';
+            case 'O'-> this.orientation = 'N';
         }
     }
 
