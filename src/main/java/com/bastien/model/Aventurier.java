@@ -13,6 +13,8 @@ public class Aventurier {
 
     private boolean isFinished;
 
+    private int nombresTresor;
+
     public Aventurier(String name, int positionOE, int positionNS, char orientation, String deplacement) {
         this.name = name;
         this.positionOE = positionOE;
@@ -20,6 +22,7 @@ public class Aventurier {
         this.orientation = orientation;
         this.deplacement = deplacement;
         this.isFinished = false;
+        this.nombresTresor = 0;
     }
 
     public boolean isFinished() {
@@ -116,6 +119,14 @@ public class Aventurier {
             default:
                 throw new Exception("Orientation inconnue");
         }
+    }
+
+    public int getNombresTresor() {
+        return nombresTresor;
+    }
+
+    public void setNombresTresor(int nombresTresor) {
+        this.nombresTresor = nombresTresor;
     }
 
 

@@ -115,4 +115,28 @@ public class StrategieServiceImplTest {
         assertEquals('E', dorian.getOrientation());
     }
 
+    /**
+     * C - 3 - 4
+     * M​ - 1 - 0 
+     * M​ - 2 - 1 
+     * T​ - 0 - 3 - 2 
+     * T​ - 1 - 3 - 3 
+     * A​ - Lara - 1 - 1 - S - AADADAGGA 
+     * @throws Exception
+     *  -> Aucune montagnes sur le trajet. 
+     * Lara fait A 1-2, A 1-3 -> T, D 'O', A 0-3 -> T, D 'N', A 0-2, G 'O', G 'S', A 0-3 -> T ===> 3 Trésor
+     * Position finale 0-3 orientation S
+     */
+    @Test
+    public void simulationTestTresorCount() throws Exception {
+        StrategieService strategieService = new StrategieServiceImpl();
+        String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteMontagneEtTresor.txt";
+        strategieService.recupDonneesFichiers(cheminFichier);
+        strategieService.simulation();
+        Aventurier lara = strategieService.getListDesAventurier().get(0);
+        assertEquals(3, lara.getNombresTresor());
+    }
+
+
+
 }
