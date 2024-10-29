@@ -18,8 +18,8 @@ public class StrategieServiceImplTest {
         String cheminFichier = "src\\test\\java\\com\\bastien\\testFichier\\testCreationCarteSize.txt";
         strategieService.recupDonneesFichiers(cheminFichier);
         Carte carte = strategieService.getCarte();
-        assertEquals(carte.getMap().length, 3);
-        assertEquals(carte.getMap()[0].length, 4);
+        assertEquals(3, carte.getMap().length);
+        assertEquals(4, carte.getMap()[0].length);
     }
 
     @Test(expected = Exception.class)
