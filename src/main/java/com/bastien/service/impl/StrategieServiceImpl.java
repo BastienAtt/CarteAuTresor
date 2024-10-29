@@ -16,10 +16,13 @@ import com.bastien.service.StrategieService;
 
 public class StrategieServiceImpl implements StrategieService {
 
+    private static final String ZERO_WIDTH_SPACE = "\u200B";
+
     private Carte carte;
 
     private List<Aventurier> listDesAventurier = new ArrayList<>();
 
+    @Override
     public List<Aventurier> getListDesAventurier() {
         return listDesAventurier;
     }
@@ -45,8 +48,8 @@ public class StrategieServiceImpl implements StrategieService {
             List<String> memoryList = new ArrayList<>();
             String line = controleReadFirstLine(reader, memoryList);
             String[] splitLine = line.split(" - ");
-            int sizeOE = Integer.valueOf(splitLine[1]);
-            int sizeNS = Integer.valueOf(splitLine[2]);
+            int sizeOE = Integer.parseInt(splitLine[1]);
+            int sizeNS = Integer.parseInt(splitLine[2]);
             carte = new Carte(sizeOE, sizeNS);
 
             //traitement des lignes non C
@@ -82,17 +85,17 @@ public class StrategieServiceImpl implements StrategieService {
         if (line.startsWith("T")) {
             splitLine = line.split(" - ");
             //.replace("\u200B", "") supprime le zero width space problématique voir le test unitaire
-            Case nouvelleCase = new Case(false, splitLine[0].replace("\u200B", ""), Integer.valueOf(splitLine[3].trim()));
-            carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
+            Case nouvelleCase = new Case(false, splitLine[0].replace(ZERO_WIDTH_SPACE, ""), Integer.parseInt(splitLine[3].trim()));
+            carte.addInMap(nouvelleCase, Integer.parseInt(splitLine[1].trim()), Integer.parseInt(splitLine[2].trim()));
         } else /* Cas Montagne */ if (line.startsWith("M")) {
             splitLine = line.split(" - ");
-            Case nouvelleCase = new Case(false, splitLine[0].replace("\u200B", ""), 0);
-            carte.addInMap(nouvelleCase, Integer.valueOf(splitLine[1].trim()), Integer.valueOf(splitLine[2].trim()));
+            Case nouvelleCase = new Case(false, splitLine[0].replace(ZERO_WIDTH_SPACE, ""), 0);
+            carte.addInMap(nouvelleCase, Integer.parseInt(splitLine[1].trim()), Integer.parseInt(splitLine[2].trim()));
         } else /* Cas Aventurier */ if (line.startsWith("A")) {
             splitLine = line.split(" - ");
-            Aventurier newAventurier = new Aventurier(splitLine[1], Integer.valueOf(splitLine[2]), Integer.valueOf(splitLine[3]), splitLine[4].charAt(0), splitLine[5].trim().replace("\u200B", ""));
+            Aventurier newAventurier = new Aventurier(splitLine[1], Integer.parseInt(splitLine[2]), Integer.parseInt(splitLine[3]), splitLine[4].charAt(0), splitLine[5].trim().replace(ZERO_WIDTH_SPACE, ""));
             listDesAventurier.add(newAventurier);
-            carte.getMap()[Integer.valueOf(splitLine[2])][Integer.valueOf(splitLine[3])].setAventurierPresent(true);
+            carte.getMap()[Integer.parseInt(splitLine[2])][Integer.parseInt(splitLine[3])].setAventurierPresent(true);
         }
     }
     /**
