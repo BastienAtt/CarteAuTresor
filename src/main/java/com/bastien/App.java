@@ -17,9 +17,11 @@ public class App
             strategieService.recupDonneesFichiers(cheminFichierEnter);
             strategieService.simulation();
             strategieService.ecriture(cheminFichierSortie);
+            System.exit(0);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             e.printStackTrace();
+            System.exit(1);
         }
     }
 }
